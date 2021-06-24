@@ -1,3 +1,5 @@
+let xdistance;
+let bob;
 class Particle {
     constructor() {
         this.pos = createVector(width / 2, height / 2);
@@ -20,7 +22,9 @@ class Particle {
     }
 
     look(walls) {
+        bob = -1;
         for (let ray of this.rays){
+            bob ++;
             let closest = null;
             let record = Infinity;
             for (let wall of walls) {
@@ -42,6 +46,8 @@ class Particle {
 
             if (closest) {
                 line(this.pos.x, this.pos.y, closest.x, closest.y);
+                xdistance = dist(this.pos.x, this.pos.y, closest.x, closest.y);
+                afstandlijst[bob] = xdistance;
             }
         }
     }
